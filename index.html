@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number</title>
+    <style>
+        .divguessnumber {
+            text-align: center;
+            font-size: 500%;
+
+        }
+        .divmyguess {
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="divguessnumber">
+        <h1 class="guessnumber">?</h1>
+        <hr>
+    </div>
+    <div class="divmyguess">
+        <h3>Guess a number? <input type="number" class="myguess"></input></h3>
+        <input type = "submit" id="submitmyguess" class="submitmyguess" value="Submit">
+    </div>
+    <div class="divshowresult" id="divshowresult">
+        <p class="guessresult"></p>
+    </div>
+    <div class="divrange" id="divrange">
+        <b class="lo"></b> - <b class="hi"></b>
+    </div>
+    <script>
+        let randomNumber = Math.floor(Math.random()*100)+1;
+        console.log ("result: " + randomNumber);
+        const myguess = document.querySelector('.myguess');
+        const guessnumber = document.querySelector('.guessnumber');
+        const lo = document.querySelector('.lo');
+        const hi = document.querySelector('.hi');
+
+        lo.textContent = 1;
+        hi.textContent = 100;
+
+        function checkGuess() {
+            const userGuess = Number(myguess.value);
+
+            if (userGuess === randomNumber) {
+                guessnumber.textContent = randomNumber;
+            } else if (userGuess < randomNumber) {
+                lo.textContent = myguess.value;
+            } else if (userGuess > randomNumber) {
+                hi.textContent = myguess.value;
+            }
+        }
+        submitmyguess.addEventListener('click', checkGuess);
+    </script>
+</body>
+</html>
